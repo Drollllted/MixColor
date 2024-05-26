@@ -16,7 +16,7 @@ class MixColor: UIView{
     lazy var textNameLabelFirst: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
         
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +40,7 @@ class MixColor: UIView{
         let label = UILabel()
         label.text = "+"
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .black
+        label.textColor = .white
         
         label.translatesAutoresizingMaskIntoConstraints = false
         
@@ -50,8 +50,7 @@ class MixColor: UIView{
     lazy var textNameLabelSecond: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.text = "Nice-nice"
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
         
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -73,13 +72,16 @@ class MixColor: UIView{
     
     lazy var ravLabel: UIButton = {
         let button = UIButton()
-        button.titleLabel?.text = "="
+        button.setTitle("Result", for: .normal)
+        button.titleLabel?.textColor = .black
 //        button.titleLabel?.textColor = .black
 //        button.titleLabel?.textAlignment = .center
 //        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         
         button.translatesAutoresizingMaskIntoConstraints = false
+        
         button.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
         return button
     }()
@@ -88,7 +90,7 @@ class MixColor: UIView{
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
        // label.text = "Nice-nice"
-        label.textColor = .black
+        label.textColor = .white
         label.textAlignment = .center
         
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -103,8 +105,10 @@ class MixColor: UIView{
         view.clipsToBounds = true
         
         view.translatesAutoresizingMaskIntoConstraints = false
+        
         view.heightAnchor.constraint(equalToConstant: 100).isActive = true
         view.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        
         return view
     }()
     
@@ -145,7 +149,8 @@ class MixColor: UIView{
         
         NSLayoutConstraint.activate([
             textNameLabelFirst.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 45),
-            textNameLabelFirst.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            textNameLabelFirst.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            textNameLabelFirst.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15)
         ])
     }
     
@@ -172,7 +177,8 @@ class MixColor: UIView{
         
         NSLayoutConstraint.activate([
             textNameLabelSecond.topAnchor.constraint(equalTo: plusLabel.bottomAnchor, constant: 45),
-            textNameLabelSecond.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            textNameLabelSecond.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            textNameLabelSecond.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15)
         ])
     }
     
@@ -199,7 +205,8 @@ class MixColor: UIView{
         
         NSLayoutConstraint.activate([
             finalNameTextLabel.topAnchor.constraint(equalTo: ravLabel.bottomAnchor, constant: 45),
-            finalNameTextLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            finalNameTextLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15),
+            finalNameTextLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15)
         ])
     }
     

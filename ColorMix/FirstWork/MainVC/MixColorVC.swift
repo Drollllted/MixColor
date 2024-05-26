@@ -17,6 +17,9 @@ class MixColorVC: UIViewController {
     private var mixColor: MixColor!
     private var apiCaller = NetworkData.shared
     
+    private var tapperFirstButton = false
+    private var currentIndex = 0
+    
     private var firstPC = FirstRectanglePC()
     private var secondPC = SecondRectanglePC()
     
@@ -31,9 +34,9 @@ class MixColorVC: UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = "MixColor"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18, weight: .bold)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18, weight: .bold), NSAttributedString.Key.foregroundColor : UIColor.white]
         
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .black
         
         mixColor.firstRectangleColor.addTarget(self, action: #selector(colorFirst), for: .touchUpInside)
         mixColor.secondRectangleColor.addTarget(self, action: #selector(colorSecond), for: .touchUpInside)
@@ -49,6 +52,9 @@ class MixColorVC: UIViewController {
         picker.delegateColor = self
         
         self.present(self.firstPC.pickerColorFirst, animated: true)
+        
+        guard let firstColor = mixColor.firstRectangleColor.backgroundColor else {return}
+        fetchNameColor(firstColor, tappedFirst: true)
     }
     
     @objc func colorSecond(){
@@ -56,6 +62,8 @@ class MixColorVC: UIViewController {
         picker.delegateColor = self
         
         self.present(self.secondPC.pickerColorSecond, animated: true)
+        guard let secondColor = mixColor.secondRectangleColor.backgroundColor else {return}
+        fetchNameColor(secondColor, tappedFirst: false)
     }
     
     @objc func mixThirdRectangleColor() {
@@ -66,20 +74,28 @@ class MixColorVC: UIViewController {
         
         mixColor.mixColorView.backgroundColor = mixColorForFinal
         
-        fetchNameColor(mixColorForFinal, isResult: true)
+        fetchNameColor(mixColorForFinal,tappedFirst: false ,isResult: true)
     }
  
     //MARK: - functions
     
-    func fetchNameColor(_ color: UIColor, isResult: Bool = false) {
+    func fetchNameColor(_ color: UIColor, tappedFirst: Bool ,isResult: Bool = false) {
         func getColor(fromColor: UIColor) -> String {
             let rgbComponents = "\(color.redValue.description),\(color.greenValue.description),\(color.blueValue.description)"
             return rgbComponents
         }
         apiCaller.getColorsCalled(rgb: getColor(fromColor: color)) {[weak self] colorName in
             DispatchQueue.main.async{
-                if isResult{
-                    self?.mixColor.textNameLabelFirst.text = colorName ?? "Ошибка"
+                if let colorName = colorName{
+                    if isResult{
+                        self?.mixColor.finalNameTextLabel.text = colorName
+                    } else if tappedFirst{
+                        self?.mixColor.textNameLabelFirst.text = colorName
+                        self?.currentIndex = 1
+                    }else{
+                        self?.mixColor.textNameLabelSecond.text = colorName
+                        self?.currentIndex = 0
+                    }
                 }
             }
         }
