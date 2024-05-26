@@ -10,6 +10,7 @@ import UIKit
 class FirstRectanglePC: UIColorPickerViewController{
     
     static var identifire = "static"
+    //private var mixColorVC: MixColorVC!
     
     weak var delegateColor: MixColorVCDelegate?
     
@@ -23,6 +24,7 @@ class FirstRectanglePC: UIColorPickerViewController{
 
 extension FirstRectanglePC: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        
         viewController.dismiss(animated: true)
     }
     

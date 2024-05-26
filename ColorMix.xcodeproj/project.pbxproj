@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD5053312C037F89003D4703 /* NetworkData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5053302C037F88003D4703 /* NetworkData.swift */; };
+		DD5053332C038084003D4703 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5053322C038084003D4703 /* UIColorExtension.swift */; };
 		DD55670C2BFA5A4200CFEE1B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD55670B2BFA5A4200CFEE1B /* AppDelegate.swift */; };
 		DD55670E2BFA5A4200CFEE1B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD55670D2BFA5A4200CFEE1B /* SceneDelegate.swift */; };
 		DD5567102BFA5A4200CFEE1B /* MixColorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD55670F2BFA5A4200CFEE1B /* MixColorVC.swift */; };
@@ -15,10 +17,12 @@
 		DD5567212BFA5D2D00CFEE1B /* FirstRectanglePC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5567202BFA5D2D00CFEE1B /* FirstRectanglePC.swift */; };
 		DD5567232BFA5D5C00CFEE1B /* SecondRectanglePC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5567222BFA5D5C00CFEE1B /* SecondRectanglePC.swift */; };
 		DD5567272BFA5DEA00CFEE1B /* MixColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5567262BFA5DEA00CFEE1B /* MixColor.swift */; };
-		DD55672C2BFD18F200CFEE1B /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD55672B2BFD18F200CFEE1B /* APICaller.swift */; };
+		DD55672C2BFD18F200CFEE1B /* JSONCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD55672B2BFD18F200CFEE1B /* JSONCaller.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD5053302C037F88003D4703 /* NetworkData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkData.swift; sourceTree = "<group>"; };
+		DD5053322C038084003D4703 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		DD5567082BFA5A4200CFEE1B /* ColorMix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorMix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD55670B2BFA5A4200CFEE1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD55670D2BFA5A4200CFEE1B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,7 +33,7 @@
 		DD5567202BFA5D2D00CFEE1B /* FirstRectanglePC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstRectanglePC.swift; sourceTree = "<group>"; };
 		DD5567222BFA5D5C00CFEE1B /* SecondRectanglePC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondRectanglePC.swift; sourceTree = "<group>"; };
 		DD5567262BFA5DEA00CFEE1B /* MixColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixColor.swift; sourceTree = "<group>"; };
-		DD55672B2BFD18F200CFEE1B /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		DD55672B2BFD18F200CFEE1B /* JSONCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCaller.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD5053342C0380C9003D4703 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DD5053322C038084003D4703 /* UIColorExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		DD5053352C0380D2003D4703 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				DD5053302C037F88003D4703 /* NetworkData.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		DD5053362C0380DE003D4703 /* JSONCaller */ = {
+			isa = PBXGroup;
+			children = (
+				DD55672B2BFD18F200CFEE1B /* JSONCaller.swift */,
+			);
+			path = JSONCaller;
+			sourceTree = "<group>";
+		};
 		DD5566FF2BFA5A4200CFEE1B = {
 			isa = PBXGroup;
 			children = (
@@ -65,7 +93,6 @@
 				DD5567282BFA685100CFEE1B /* FirstWork */,
 				DD5567252BFA5DAE00CFEE1B /* Support */,
 				DD5567192BFA5A4400CFEE1B /* Info.plist */,
-				DD55672B2BFD18F200CFEE1B /* APICaller.swift */,
 			);
 			path = ColorMix;
 			sourceTree = "<group>";
@@ -102,6 +129,9 @@
 		DD5567282BFA685100CFEE1B /* FirstWork */ = {
 			isa = PBXGroup;
 			children = (
+				DD5053362C0380DE003D4703 /* JSONCaller */,
+				DD5053352C0380D2003D4703 /* Network */,
+				DD5053342C0380C9003D4703 /* Extension */,
 				DD55671F2BFA5D1200CFEE1B /* ColorPicker */,
 				DD5567242BFA5DA300CFEE1B /* MainVC */,
 			);
@@ -178,13 +208,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD5053312C037F89003D4703 /* NetworkData.swift in Sources */,
 				DD5567232BFA5D5C00CFEE1B /* SecondRectanglePC.swift in Sources */,
 				DD5567102BFA5A4200CFEE1B /* MixColorVC.swift in Sources */,
 				DD5567272BFA5DEA00CFEE1B /* MixColor.swift in Sources */,
 				DD5567212BFA5D2D00CFEE1B /* FirstRectanglePC.swift in Sources */,
+				DD5053332C038084003D4703 /* UIColorExtension.swift in Sources */,
 				DD55670C2BFA5A4200CFEE1B /* AppDelegate.swift in Sources */,
 				DD55670E2BFA5A4200CFEE1B /* SceneDelegate.swift in Sources */,
-				DD55672C2BFD18F200CFEE1B /* APICaller.swift in Sources */,
+				DD55672C2BFD18F200CFEE1B /* JSONCaller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

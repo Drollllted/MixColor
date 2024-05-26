@@ -15,6 +15,7 @@ protocol MixColorVCDelegate: AnyObject {
 class MixColorVC: UIViewController {
     
     private var mixColor: MixColor!
+    private var apiCaller = NetworkData.shared
     
     private var firstPC = FirstRectanglePC()
     private var secondPC = SecondRectanglePC()
@@ -23,6 +24,8 @@ class MixColorVC: UIViewController {
         mixColor = MixColor()
         view = mixColor
     }
+    
+    // dependency injection (Внедрение зависимости)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,17 +37,18 @@ class MixColorVC: UIViewController {
         
         mixColor.firstRectangleColor.addTarget(self, action: #selector(colorFirst), for: .touchUpInside)
         mixColor.secondRectangleColor.addTarget(self, action: #selector(colorSecond), for: .touchUpInside)
+        mixColor.ravLabel.addTarget(self, action: #selector(mixThirdRectangleColor), for: .touchUpInside)
+        
     }
     
     //MARK: - objc func
     
     @objc func colorFirst() {
+        
         let picker = firstPC
         picker.delegateColor = self
         
         self.present(self.firstPC.pickerColorFirst, animated: true)
-        
-        mixThirdColor()
     }
     
     @objc func colorSecond(){
@@ -52,20 +56,34 @@ class MixColorVC: UIViewController {
         picker.delegateColor = self
         
         self.present(self.secondPC.pickerColorSecond, animated: true)
-        
-        mixThirdColor()
     }
- 
     
-    func mixThirdColor() {
+    @objc func mixThirdRectangleColor() {
         guard let color1 = mixColor.firstRectangleColor.backgroundColor,
               let color2 = mixColor.secondRectangleColor.backgroundColor else {return }
         
         let mixColorForFinal = UIColor.mixColor(color1, color2)
         
         mixColor.mixColorView.backgroundColor = mixColorForFinal
+        
+        fetchNameColor(mixColorForFinal, isResult: true)
     }
+ 
+    //MARK: - functions
     
+    func fetchNameColor(_ color: UIColor, isResult: Bool = false) {
+        func getColor(fromColor: UIColor) -> String {
+            let rgbComponents = "\(color.redValue.description),\(color.greenValue.description),\(color.blueValue.description)"
+            return rgbComponents
+        }
+        apiCaller.getColorsCalled(rgb: getColor(fromColor: color)) {[weak self] colorName in
+            DispatchQueue.main.async{
+                if isResult{
+                    self?.mixColor.textNameLabelFirst.text = colorName ?? "Ошибка"
+                }
+            }
+        }
+    }
 }
 
 
@@ -79,26 +97,4 @@ extension MixColorVC: MixColorVCDelegate{
     }
     
     
-}
-
-extension UIColor{
-    
-    static func mixColor(_ color1: UIColor, _ color2: UIColor) -> UIColor{
-        var redColor1: CGFloat = 0
-        var greenColor1: CGFloat = 0
-        var blueColor1: CGFloat = 0
-        var alpha1: CGFloat = 0
-        
-        var redColor2: CGFloat = 0
-        var greenColor2: CGFloat = 0
-        var blueColor2: CGFloat = 0
-        var alpha2: CGFloat = 0
-        
-        color1.getRed(&redColor1, green: &greenColor1, blue: &blueColor1, alpha: &alpha1)
-        color2.getRed(&redColor2, green: &greenColor2, blue: &blueColor2, alpha: &alpha2)
-        
-        let mixColor = UIColor(red: ((redColor1 + redColor2) / 2), green: ((greenColor1 + greenColor2) / 2), blue: ((blueColor1 + blueColor2) / 2), alpha: ((alpha1 + alpha2) / 2))
-        
-        return mixColor
-    }
 }

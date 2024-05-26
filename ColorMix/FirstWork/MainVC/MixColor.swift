@@ -16,7 +16,6 @@ class MixColor: UIView{
     lazy var textNameLabelFirst: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.text = "Nice-nice"
         label.textColor = .black
         label.textAlignment = .center
         
@@ -72,22 +71,23 @@ class MixColor: UIView{
         return button
     }()
     
-    lazy var ravLabel: UILabel = {
-        let label = UILabel()
-        label.text = "="
-        label.textColor = .black
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+    lazy var ravLabel: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.text = "="
+//        button.titleLabel?.textColor = .black
+//        button.titleLabel?.textAlignment = .center
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         
-        label.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
-        return label
+        return button
     }()
     
     lazy var finalNameTextLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.text = "Nice-nice"
+       // label.text = "Nice-nice"
         label.textColor = .black
         label.textAlignment = .center
         

@@ -8,6 +8,7 @@
 import UIKit
 
 class SecondRectanglePC: UIColorPickerViewController{
+    
     weak var delegateColor: MixColorVCDelegate?
     
     lazy var pickerColorSecond: UIColorPickerViewController = {
@@ -20,11 +21,10 @@ class SecondRectanglePC: UIColorPickerViewController{
 
 extension SecondRectanglePC: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-        
+        viewController.dismiss(animated: true)
     }
     
     func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
         delegateColor?.setSecondColor(color: color)
-        viewController.dismiss(animated: true)
     }
 }
